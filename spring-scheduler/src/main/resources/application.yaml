@@ -1,0 +1,16 @@
+
+fixedDelay:
+  in:
+    miliseconds: 1000
+
+
+#      {second} {minute} {hour} {day} {month} {day of the week} { year (optional)}
+cron:
+  expression: "* * * * * ?"
+
+#  run spring scheduler in parallel with a single instance
+#  spring:
+#    task:
+#      scheduling:
+#        pool:
+#          size=5:
