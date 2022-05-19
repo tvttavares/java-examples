@@ -1,0 +1,20 @@
+#      {second} {minute} {hour} {day} {month} {day of the week} { year (optional)}
+cron:
+  expression: "* * * * * ?"
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testscheduler
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    spring:
+      jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2     # to access console: http://localhost:8080/h2
+  flyway:
+    locations: classpath:/db/migration
