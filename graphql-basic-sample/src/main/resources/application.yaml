@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:graphqldb
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+      properties:
+        hibernate:
+          format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2     # to access console: http://localhost:8080/h2
+
