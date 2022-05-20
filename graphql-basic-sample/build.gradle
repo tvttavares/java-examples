@@ -18,15 +18,33 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 
-//	h2
+	// h2
 	runtimeOnly 'com.h2database:h2'
 
-//	lombok
+	// lombok
 	compileOnly 'org.projectlombok:lombok:1.18.24'
 	annotationProcessor 'org.projectlombok:lombok'
 
+	// GraphQL server
+	implementation 'com.graphql-java-kickstart:graphql-spring-boot-starter:12.0.0'
+
+	// Altair tool for schema introspection and query debugging
+	runtimeOnly 'com.graphql-java-kickstart:altair-spring-boot-starter:11.0.0'
+
+	// GraphiQL tool for schema introspection and query debugging
+	runtimeOnly 'com.graphql-java-kickstart:graphiql-spring-boot-starter:11.0.0'
+
+	// playground
+	runtimeOnly 'com.graphql-java-kickstart:playground-spring-boot-starter:11.0.0'
+
+	// voyager for schema inspection
+	runtimeOnly 'com.graphql-java-kickstart:voyager-spring-boot-starter:11.0.0'
+
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// graphql test
+	testImplementation 'com.graphql-java-kickstart:graphql-spring-boot-starter-test:12.0.0'
 }
 
 tasks.named('test') {
