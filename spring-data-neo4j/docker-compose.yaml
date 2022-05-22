@@ -1,0 +1,19 @@
+version: '3'
+networks:
+  neo4j-network:
+    driver: bridge
+
+services:
+  neo4j:
+    image: neo4j:latest
+    networks:
+      - neo4j-network
+    restart: unless-stopped
+    ports:
+      - 7474:7474
+      - 7687:7687
+    environment:
+      # Raise memory limits
+      - NEO4J_dbms_memory_pagecache_size=200M
+      - NEO4J_dbms.memory.heap.initial_size=200M
+      - NEO4J_dbms_memory_heap_max__size=200M
