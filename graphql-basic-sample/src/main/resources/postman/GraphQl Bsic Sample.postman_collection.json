@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "f445cd38-a5a2-484e-8714-1a87219bf7d3",
+		"name": "GraphQl Bsic Sample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9684824"
+	},
+	"item": [
+		{
+			"name": "Add Trade Type",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addTradeType {\r\n  addTradeType(tradeType: { name: \"Sale1\" }) {\r\n    id\r\n    name\r\n    createdAt\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trade Type by Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getTradeTypeById {\r\n  getTradeTypeById(id: 1) {\r\n    id\r\n    name\r\n    createdAt\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all trade Types",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getTradeTypes {\r\n  getTradeTypes {\r\n    id\r\n    name\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Listing",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation addListing {\r\n  addListing(\r\n    listing: {\r\n      title: \"Big Housw with 3 Rooms\"\r\n      description: \"Big House with 3 rooms in city center\"\r\n      price: 75000\r\n      currency: USD\r\n      tradeTypeId: 3\r\n    }\r\n  ) {\r\n    id\r\n    title\r\n    description\r\n    price\r\n    currency\r\n    createdAt\r\n    tradeType {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Listings",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getListings {\r\n  getListings {\r\n    id\r\n    title\r\n    description\r\n    price\r\n    currency\r\n    createdAt\r\n    tradeType {\r\n      id\r\n      name\r\n    }\r\n  }\r\n}\r\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/graphql",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

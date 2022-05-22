@@ -13,8 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TradeTypeServiceImpl implements TradeTypeService {
 
-    private static final Integer DEFAULT_SKIP = 0;
-    private static final Integer DEFAULT_LIMIT = 4;
     private final TradeTypeRepository tradeTypeRepository;
     private final MapTradeType mapTradeType;
 
@@ -30,7 +28,7 @@ public class TradeTypeServiceImpl implements TradeTypeService {
     }
 
     @Override
-    public List<TradeType> get(Integer skip, Integer limit) {
-        return tradeTypeRepository.get(skip == null ? DEFAULT_SKIP : skip, limit == null ? DEFAULT_LIMIT : limit);
+    public List<TradeType> getAll() {
+        return tradeTypeRepository.findAll();
     }
 }

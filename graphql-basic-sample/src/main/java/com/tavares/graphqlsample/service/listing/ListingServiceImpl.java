@@ -15,8 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ListingServiceImpl implements ListingService {
 
-    private static final Integer DEFAULT_SKIP = 0;
-    private static final Integer DEFAULT_LIMIT = 4;
     private final ListingRepository listingRepository;
     private final TradeTypeRepository tradeTypeRepository;
     private final MapListing mapListing;
@@ -34,8 +32,8 @@ public class ListingServiceImpl implements ListingService {
     }
 
     @Override
-    public List<Listing> get(Integer skip, Integer limit) {
-        return listingRepository.get(skip == null ? DEFAULT_SKIP : skip, limit == null ? DEFAULT_LIMIT : limit);
+    public List<Listing> getAll() {
+        return listingRepository.findAll();
     }
 
     private TradeType findTradeTypeById(Long id) {

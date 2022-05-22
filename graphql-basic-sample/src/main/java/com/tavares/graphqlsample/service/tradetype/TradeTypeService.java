@@ -11,5 +11,5 @@ public interface TradeTypeService {
 
     TradeType getById(Long id);
 
-    List<TradeType> get(Integer skip, Integer limit);
+    List<TradeType> getAll();
 }

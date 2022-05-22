@@ -18,7 +18,7 @@ public class TradeTypeQueryResolver implements GraphQLQueryResolver {
         return tradeTypeService.getById(id);
     }
 
-    public List<TradeType> getTradeTypes(Integer skip, Integer limit) {
-        return tradeTypeService.get(skip, limit);
+    public List<TradeType> getTradeTypes() {
+        return tradeTypeService.getAll();
     }
 }

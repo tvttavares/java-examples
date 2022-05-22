@@ -18,7 +18,7 @@ public class ListingQueryResolver implements GraphQLQueryResolver {
         return listingService.getById(id);
     }
 
-    public List<Listing> getListings(Integer skip, Integer limit) {
-        return listingService.get(skip, limit);
+    public List<Listing> getListings() {
+        return listingService.getAll();
     }
 }

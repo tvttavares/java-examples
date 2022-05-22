@@ -11,5 +11,5 @@ public interface ListingService {
 
     Listing getById(Long id);
 
-    List<Listing> get(Integer skip, Integer limit);
+    List<Listing> getAll();
 }
