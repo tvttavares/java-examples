@@ -15,8 +15,8 @@ public class Author {
     private Long id;
     private String name;
 
-    @Relationship(type = "AUTHORED" )
-    private List books;
+    @Relationship(type = "AUTHORED", direction = Relationship.Direction.INCOMING)
+    private List<Book> books;
 
     public Long getId() {
         return id;
@@ -34,11 +34,11 @@ public class Author {
         this.name = name;
     }
 
-    public List getBooks() {
+    public List<Book> getBooks() {
         return books;
     }
 
-    public void setBooks(List books) {
+    public void setBooks(List<Book> books) {
         this.books = books;
     }
 }

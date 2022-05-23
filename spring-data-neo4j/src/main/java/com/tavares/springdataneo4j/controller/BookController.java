@@ -25,17 +25,17 @@ public class BookController {
     }
 
     @GetMapping("/title/{str}")
-    public List getBookByTitleContaining(@PathVariable String str) {
+    public List<Book> getBookByTitleContaining(@PathVariable String str) {
         return bookService.getBookByTitleContaining(str);
     }
 
     @GetMapping
-    public List getAllBooks() {
+    public List<Book> getAllBooks() {
         return bookService.getAllBooks();
     }
 
     @GetMapping("/count")
-    public Long getCountofBooks() {
+    public Long getCountOfBooks() {
         return bookService.getCountOfBooks();
     }
 

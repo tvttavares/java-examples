@@ -1,6 +1,7 @@
 package com.tavares.springdataneo4j.controller;
 
 import com.tavares.springdataneo4j.neo4j.model.Author;
+import com.tavares.springdataneo4j.neo4j.model.Book;
 import com.tavares.springdataneo4j.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,12 @@ public class AuthorController {
     }
 
     @GetMapping
-    public List getAllAuthors() {
+    public List<Author> getAllAuthors() {
         return authorService.getAll();
     }
 
     @GetMapping("/count")
-    public Long getCountofAuthors() {
+    public Long getCountOfAuthors() {
         return authorService.getCountOfAuthors();
     }
 

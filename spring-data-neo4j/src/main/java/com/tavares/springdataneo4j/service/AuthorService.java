@@ -1,6 +1,7 @@
 package com.tavares.springdataneo4j.service;
 
 import com.tavares.springdataneo4j.neo4j.model.Author;
+import com.tavares.springdataneo4j.neo4j.model.Book;
 import com.tavares.springdataneo4j.neo4j.repository.AuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ public class AuthorService {
     @Autowired
     private AuthorRepository authorRepository;
 
-    public List getAll() {
+    public List<Author> getAll() {
         return authorRepository.getAllAuthors();
     }
 
