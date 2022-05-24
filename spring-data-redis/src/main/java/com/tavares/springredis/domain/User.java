@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 //No @Entity concept here
-public class User  implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = -8867388402023340615L;
 

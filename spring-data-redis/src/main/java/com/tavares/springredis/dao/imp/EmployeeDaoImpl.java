@@ -11,9 +11,9 @@ import java.util.Map;
 @Repository
 public class EmployeeDaoImpl implements IEmployeeDao {
 
-    private final String hashReference= "Employee";
+    private final String hashReference = "Employee";
 
-    @Resource(name="redisTemplate")          // 'redisTemplate' is defined as a Bean in AppConfig.java
+    @Resource(name = "employeeTemplate")    // 'redisTemplate' is defined as a Bean in AppConfig.java
     private HashOperations<String, Integer, Employee> hashOperations;
 
     @Override

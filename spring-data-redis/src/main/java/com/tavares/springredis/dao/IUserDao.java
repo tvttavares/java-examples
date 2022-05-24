@@ -10,7 +10,7 @@ public interface IUserDao {
 
     User get(String userId);
 
-    Map<String, User> getAll();
+    Map<Object, Object> getAll();
 
     void update(User user);
 

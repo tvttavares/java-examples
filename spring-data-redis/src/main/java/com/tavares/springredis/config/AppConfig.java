@@ -1,6 +1,7 @@
 package com.tavares.springredis.config;
 
 import com.tavares.springredis.domain.Employee;
+import com.tavares.springredis.domain.User;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -20,11 +21,18 @@ public class AppConfig {
     }
 
     //Creating RedisTemplate for Entity 'Employee'
-    @Bean
+    @Bean(name = "employeeTemplate")
     public RedisTemplate<String, Employee> redisTemplate() {
         RedisTemplate<String, Employee> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(redisConnectionFactory());
-//        redisTemplate.afterPropertiesSet();
+        return redisTemplate;
+    }
+
+    //Creating RedisTemplate for Entity 'Employee'
+    @Bean(name = "userTemplate")
+    public RedisTemplate<String, User> redisUserTemplate() {
+        RedisTemplate<String, User> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(redisConnectionFactory());
         return redisTemplate;
     }
 }
