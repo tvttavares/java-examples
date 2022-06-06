@@ -1,12 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.serverless</groupId>
-    <artifactId>hello</artifactId>
+    <artifactId>serverless-rest-dynamo-api</artifactId>
     <packaging>jar</packaging>
     <version>dev</version>
-    <name>serverless-rest-dynamo-api</name>
+    <name>aws-serverless-rest-dynamo-api</name>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

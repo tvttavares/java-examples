@@ -16,6 +16,9 @@ service: serverless-rest-dynamo-api
 #app: your-app-name
 #org: your-org-name
 
+custom:
+  productsTableName: 'java-products-${self:provider.stage}'
+
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
 frameworkVersion: '3'
@@ -23,18 +26,26 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: java8
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": [ "ProductsDynamoDBTable", "Arn" ] }
+  environment:
+    PRODUCTS_TABLE_NAME: ${self:custom.productsTableName}
 
 # you can overwrite defaults here
 #  stage: dev
 #  region: us-east-1
-
 # you can add statements to the Lambda function's IAM Role here
-iamRoleStatements:
-  - Effect: "Allow"
-    Action:
-      - "dynamodb:*"
-    Resource: "*"
-#  iam:
 #    role:
 #      statements:
 #        - Effect: "Allow"
@@ -62,15 +73,28 @@ package:
 functions:
   listProducts:
     handler: com.serverless.ListProductsHandler
-
+    events:
+      - http:
+          path: /products
+          method: get
   getProduct:
     handler: com.serverless.GetProductHandler
-
+    events:
+      - http:
+          path: /products/{id}
+          method: get
   createProduct:
     handler: com.serverless.CreateProductHandler
-
+    events:
+      - http:
+          path: /products
+          method: post
   deleteProduct:
     handler: com.serverless.DeleteProductHandler
+    events:
+      - http:
+          path: /products/{id}
+          method: delete
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
@@ -124,10 +148,10 @@ functions:
 #       Value: "Some output value"
 resources:
   Resources:
-    productsTable:
+    ProductsDynamoDBTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: products_table
+        TableName: ${self:custom.productsTableName}
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
