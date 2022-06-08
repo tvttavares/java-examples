@@ -77,6 +77,11 @@ functions:
       - http:
           path: /products
           method: get
+      - schedule:
+          name: ProductExportScheduleJob
+          description: 'Product List that runs every 15 minutes'
+          rate: rate(15 minutes)
+          enabled: false
   getProduct:
     handler: com.serverless.GetProductHandler
     events:
