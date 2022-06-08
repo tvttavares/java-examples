@@ -78,7 +78,7 @@ functions:
           path: /products
           method: get
       - schedule:
-          name: ProductExportScheduleJob
+          name: ProductListJob
           description: 'Product List that runs every 15 minutes'
           rate: rate(15 minutes)
           enabled: false

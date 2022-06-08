@@ -33,15 +33,17 @@ public class SNSService {
         createSNSTopic("test-topic-send-email");
 
 //         delete a topic
-        deleteSNSTopic("arn:aws:sns:us-east-1:618415909859:my-new-topic");
+//        deleteSNSTopic("arn:aws:sns:us-east-1:618415909859:my-new-topic");
 
 //         subscribe email to topic
-        subscribeEmail("arn:aws:sns:us-east-1:618415909859:test-topic-send-email", "ttavares@mcfadyen.com");
+//        subscribeEmail("arn:aws:sns:us-east-1:618415909859:test-topic-send-email", "ttavares@mcfadyen.com");
 
 //         confirm subscription
-        confirmSubscription("subToken", "arn:aws:sns:us-east-1:618415909859:test-topic-send-email");
+//        confirmSubscription("subToken", "arn:aws:sns:us-east-1:618415909859:test-topic-send-email");
+//
+//        publishMessageOnTopic("sns email test", "arn:aws:sns:us-east-1:618415909859:test-topic-send-email");
 
-        publishMessageOnTopic("sns email test", "arn:aws:sns:us-east-1:618415909859:test-topic-send-email");
+        sendMessage("test test","Test Amazon","arn:aws:sns:us-east-1:618415909859:test-topic-send-email" );
     }
 
     private static SnsClient getSNSClient() {
@@ -59,23 +61,7 @@ public class SNSService {
                     .build();
 
             ListTopicsResponse result = snsClient.listTopics(request);
-
-            Optional<Topic> t = snsClient.listTopics().topics().stream()
-                    .filter(topic -> topic.topicArn().equals("arn:aws:sns:us-east-1:618415909859:test-topic-send-email")).findFirst();
-
-
-            if (snsClient.listTopics().topics().stream()
-                    .anyMatch(topic -> topic.topicArn().equals("arn:aws:sns:us-east-1:618415909859:test-topic-send-email"))) {
-                System.out.println("Status was " + result.sdkHttpResponse().statusCode() + "\nTopics\n" + result.topics());
-            }
-
-            if (snsClient.getTopicAttributes(GetTopicAttributesRequest.builder()
-                    .topicArn("arn:aws:sns:us-east-1:618415909859:test-topic-send-email").build()).attributes().get("SubscriptionsConfirmed").equals("1")) {
-                System.out.println("Status was " + result.sdkHttpResponse().statusCode() + "\nTopics\n" + result.topics());
-            }
-
             System.out.println("Status was " + result.sdkHttpResponse().statusCode() + "\nTopics\n" + result.topics());
-
         } catch (SnsException e) {
             System.err.println(e.awsErrorDetails().errorMessage());
             System.exit(1);
@@ -171,14 +157,9 @@ public class SNSService {
         }
     }
 
-    public String sendMessage(String pMessage, String pMessageSubject, String pTopicArn) {
+    public static String sendMessage(String pMessage, String pMessageSubject, String pTopicArn) {
         if (pTopicArn != null && pTopicArn.isEmpty()) {
             return "No message was sent. TopicArn is Blank/Empty";
-        }
-
-        String region = System.getenv("AWS_REGION");
-        if (LOG.isDebugEnabled()) {
-            LOG.debug(String.format("SendProductExportSNSMessage sendMessage >> " + region));
         }
 
         SnsClient snsClient = getSNSClient();
