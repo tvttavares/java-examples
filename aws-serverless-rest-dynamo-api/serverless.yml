@@ -41,6 +41,9 @@ provider:
         - { "Fn::GetAtt": [ "ProductsDynamoDBTable", "Arn" ] }
   environment:
     PRODUCTS_TABLE_NAME: ${self:custom.productsTableName}
+  tracing:
+    apiGateway: false
+    lambda: false
 
 # you can overwrite defaults here
 #  stage: dev
@@ -82,24 +85,28 @@ functions:
           description: 'Product List that runs every 15 minutes'
           rate: rate(15 minutes)
           enabled: false
+    tracing: Active
   getProduct:
     handler: com.serverless.GetProductHandler
     events:
       - http:
           path: /products/{id}
           method: get
+    tracing: PassThrough
   createProduct:
     handler: com.serverless.CreateProductHandler
     events:
       - http:
           path: /products
           method: post
+#    tracing: PassThrough
   deleteProduct:
     handler: com.serverless.DeleteProductHandler
     events:
       - http:
           path: /products/{id}
           method: delete
+    tracing: PassThrough
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
